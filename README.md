@@ -1,10 +1,14 @@
 # Discord RPC
 
-## Deprecation Notice
-
-This library has been deprecated in favor of Discord's GameSDK. [Learn more here](https://discordapp.com/developers/docs/game-sdk/sdk-starter-guide)
+## What is this fork?
+This is a fork of the original discord-rpc library, but contains new features. <br>
+Discord's offerings these days in regards to RPC support are lacking when it comes to using proper programming languages such as C and C++ in smaller applications (Not game engines). <br>
+This fork is specifically targeted towards my music application, OSSP, but aims to maintain the same, standard interface that discord-rpc has used the past decade, only adding extensions. <br>
+Oh, and if it isn't obvious, this fork drops support for game engines, and only supports UNIX/Unix-like operating systems (Windows may still work, but it is NOT tested)
 
 ---
+
+## Old README
 
 This is a library for interfacing your game with a locally running Discord desktop client. It's known to work on Windows, macOS, and Linux. You can use the lib directly if you like, or use it as a guide to writing your own if it doesn't suit your game as is. PRs/feedback welcome if you have an improvement everyone might want, or can describe how this doesn't meet your needs.
 
@@ -20,68 +24,6 @@ The most up to date documentation for Rich Presence can always be found on our [
 Zeroith, you should be set up to build things because you are a game developer, right?
 
 First, head on over to the [Discord developers site](https://discordapp.com/developers/applications/me) and make yourself an app. Keep track of `Client ID` -- you'll need it here to pass to the init function.
-
-### Unreal Engine 4 Setup
-
-To use the Rich Presense plugin with Unreal Engine Projects:
-
-1.  Download the latest [release](https://github.com/discordapp/discord-rpc/releases) for each operating system you are targeting and the zipped source code
-2.  In the source code zip, copy the UE plugin—`examples/unrealstatus/Plugins/discordrpc`—to your project's plugin directory
-3.  At `[YOUR_UE_PROJECT]/Plugins/discordrpc/source/ThirdParty/DiscordRpcLibrary/`, create an `Include` folder and copy `discord_rpc.h` and `discord_register.h` to it from the zip
-4.  Follow the steps below for each OS
-5.  Build your UE4 project
-6.  Launch the editor, and enable the Discord plugin.
-
-#### Windows
-
-- At `[YOUR_UE_PROJECT]/Plugins/discordrpc/source/ThirdParty/DiscordRpcLibrary/`, create a `Win64` folder
-- Copy `lib/discord-rpc.lib` and `bin/discord-rpc.dll` from `[RELEASE_ZIP]/win64-dynamic` to the `Win64` folder
-
-#### Mac
-
-- At `[YOUR_UE_PROJECT]/Plugins/discordrpc/source/ThirdParty/DiscordRpcLibrary/`, create a `Mac` folder
-- Copy `libdiscord-rpc.dylib` from `[RELEASE_ZIP]/osx-dynamic/lib` to the `Mac` folder
-
-#### Linux
-
-- At `[YOUR_UE_PROJECT]/Plugins/discordrpc/source/ThirdParty/DiscordRpcLibrary/`, create a `Linux` folder
-- Inside, create another folder `x86_64-unknown-linux-gnu`
-- Copy `libdiscord-rpc.so` from `[RELEASE_ZIP]/linux-dynamic/lib` to `Linux/x86_64-unknown-linux-gnu`
-
-### Unity Setup
-
-If you're a Unity developer looking to integrate Rich Presence into your game, follow this simple guide to get started towards success:
-
-1. Download the DLLs for any platform that you need from [our releases](https://github.com/discordapp/discord-rpc/releases)
-2. In your Unity project, create a `Plugins` folder inside your `Assets` folder if you don't already have one
-3. Copy the file `DiscordRpc.cs` from [here](https://github.com/discordapp/discord-rpc/blob/master/examples/button-clicker/Assets/DiscordRpc.cs) into your `Assets` folder. This is basically your header file for the SDK
-
-We've got our `Plugins` folder ready, so let's get platform-specific!
-
-#### Windows
-
-4. Create `x86` and `x86_64` folders inside `Assets/Plugins/`
-5. Copy `discord-rpc-win/win64-dynamic/bin/discord-rpc.dll` to `Assets/Plugins/x86_64/`
-6. Copy `discord-rpc-win/win32-dynamic/bin/discord-rpc.dll` to `Assets/Plugins/x86/`
-7. Click on both DLLs and make sure they are targetting the correct architectures in the Unity editor properties pane
-8. Done!
-
-#### MacOS
-
-4. Copy `discord-rpc-osx/osx-dynamic/lib/libdiscord-rpc.dylib` to `Assets/Plugins/`
-5. Rename `libdiscord-rpc.dylib` to `discord-rpc.bundle`
-6. Done!
-
-#### Linux
-
-4. Copy `discord-rpc-linux/linux-dynamic-lib/libdiscord-rpc.so` to `Assets/Plugins/`
-5. Done!
-
-You're ready to roll! For code examples on how to interact with the SDK using the `DiscordRpc.cs` header file, check out [our example](https://github.com/discordapp/discord-rpc/blob/master/examples/button-clicker/Assets/DiscordController.cs)
-
-### From package
-
-Download a release package for your platform(s) -- they have subdirs with various prebuilt options, select the one you need add `/include` to your compile includes, `/lib` to your linker paths, and link with `discord-rpc`. For the dynamically linked builds, you'll need to ship the associated file along with your game.
 
 ### From repo
 
@@ -125,14 +67,6 @@ Why do we have three of these? Three times the fun!
 ## Sample: send-presence
 
 This is a text adventure "game" that inits/deinits the connection to Discord, and sends a presence update on each command.
-
-## Sample: button-clicker
-
-This is a sample [Unity](https://unity3d.com/) project that wraps a DLL version of the library, and sends presence updates when you click on a button. Run `python build.py unity` in the root directory to build the correct library files and place them in their respective folders.
-
-## Sample: unrealstatus
-
-This is a sample [Unreal](https://www.unrealengine.com) project that wraps the DLL version of the library with an Unreal plugin, exposes a blueprint class for interacting with it, and uses that to make a very simple UI. Run `python build.py unreal` in the root directory to build the correct library files and place them in their respective folders.
 
 ## Wrappers and Implementations
 
