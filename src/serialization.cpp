@@ -106,6 +106,10 @@ size_t JsonWriteRichPresenceObj(char* dest,
                 WriteObject activity(writer, "activity");
 
                 WriteOptionalString(writer, "state", presence->state);
+
+                WriteKey(writer, "type");
+                writer.Int(presence->activity_type);
+
                 WriteOptionalString(writer, "details", presence->details);
 
                 if (presence->startTimestamp || presence->endTimestamp) {

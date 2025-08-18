@@ -25,6 +25,7 @@ extern "C" {
 
 typedef struct DiscordRichPresence {
     const char* state;   /* max 128 bytes */
+    int activity_type;
     const char* details; /* max 128 bytes */
     int64_t startTimestamp;
     int64_t endTimestamp;
@@ -63,6 +64,10 @@ typedef struct DiscordEventHandlers {
 #define DISCORD_REPLY_IGNORE 2
 #define DISCORD_PARTY_PRIVATE 0
 #define DISCORD_PARTY_PUBLIC 1
+#define DISCORD_ACTIVITY_TYPE_PLAYING 0
+#define DISCORD_ACTIVITY_TYPE_LISTENING 2
+#define DISCORD_ACTIVITY_TYPE_WATCHING 3
+#define DISCORD_ACTIVITY_TYPE_COMPETING 5
 
 DISCORD_EXPORT void Discord_Initialize(const char* applicationId,
                                        DiscordEventHandlers* handlers,

@@ -40,6 +40,7 @@ static void updateDiscordPresence()
         discordPresence.state = "West of House";
         sprintf(buffer, "Frustration level: %d", FrustrationLevel);
         discordPresence.details = buffer;
+        discordPresence.activity_type = DISCORD_ACTIVITY_TYPE_LISTENING;
         discordPresence.startTimestamp = StartTime;
         discordPresence.endTimestamp = time(0) + 5 * 60;
         discordPresence.largeImageKey = "canary-large";
